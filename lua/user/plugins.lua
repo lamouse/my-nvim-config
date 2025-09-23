@@ -73,7 +73,7 @@ return require('packer').startup{
 
       -- quick find
       use {
-          'nvim-telescope/telescope.nvim', tag = '0.1.0',
+          'nvim-telescope/telescope.nvim', tag = '0.1.8',
           requires = { {'nvim-lua/plenary.nvim'} }
       }
 
@@ -91,7 +91,7 @@ return require('packer').startup{
       -- file explorer
       use {
           "nvim-neo-tree/neo-tree.nvim",
-          requires = { 
+          requires = {
               "nvim-lua/plenary.nvim",
               "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
               "MunifTanjim/nui.nvim",
@@ -107,8 +107,8 @@ return require('packer').startup{
       -- using packer.nvim
       use {
           'akinsho/bufferline.nvim',
-          tag = "v2.*",
-          requires = 'kyazdani42/nvim-web-devicons'
+          tag = "v4.*",
+          requires = 'nvim-tree/nvim-web-devicons'
       }
 
       -- beautiful statesline

@@ -3,11 +3,9 @@ vim.g.maplocalleader = ""
 
 require "user.keymaps"
 require "user.plugins"
-require "user.lspconfig"
 require "user.cmp"
 require "user.telescope"
-require 'nvim-treesitter.install'.compilers = { 'clang' }
--- require "user.treesitter"
+require "user.treesitter"
 require "user.autopairs"
 require "user.gitsigns"
 require "user.neo-tree"
@@ -25,5 +23,16 @@ require "myself.options"
 require "myself.buildsystem"
 require "myself.filetype"
 require "myself.format"
+-- ui
+require "user.ui"
 
 vim.cmd [[colorscheme gruvbox]]
+vim.lsp.enable('clangd')
+
+if vim.lsp.inlay_hint then
+  vim.keymap.set("n", "<leader>L", function()
+    local enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr })
+    vim.lsp.inlay_hint.enable(not enabled, { bufnr = bufnr })
+    vim.notify("Inlay hints " .. (enabled and "disabled" or "enabled"), vim.log.levels.INFO)
+  end, { buffer = bufnr, desc = "Toggle Inlay Hints" })
+end
