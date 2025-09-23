@@ -13,38 +13,25 @@
 
 -- https://clangd.llvm.org/extensions.html#switch-between-sourceheader
 
--- Mappings.
--- See `:help vim.diagnostic.*` for documentation on any of the below functions
-local opts = { noremap=true, silent=true }
-vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-vim.api.nvim_set_keymap('n', '[g', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-vim.api.nvim_set_keymap('n', ']g', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-vim.api.nvim_set_keymap('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-     -- Mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    local key_opts = { buffer = bufnr, noremap = true, silent = true }
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, key_opts)
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, key_opts)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, key_opts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, key_opts)
-    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, key_opts)
-    vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, key_opts)
-    vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, key_opts)
-    vim.keymap.set('n', '<leader>wl', function()
-      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    end, opts)
-    vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, key_opts)
-    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, key_opts)
-    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, key_opts)
-    vim.keymap.set('n', '<leader>a', vim.lsp.buf.code_action, key_opts)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, key_opts)
-    vim.keymap.set('n', '<leader><leader>f', vim.lsp.buf.formatting_sync, key_opts)
+      -- Mappings.
+    local opts = { buffer = bufnr, noremap = true, silent = true }
+    -- See `:help vim.diagnostic.*` for documentation on any of the below functions
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+    vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, opts)
+    vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, opts)
+    vim.keymap.set('n', '[g', vim.diagnostic.goto_prev, opts)
+    vim.keymap.set('n', ']g', vim.diagnostic.goto_next, opts)
+    vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
 end
 
 local function switch_source_header(bufnr, client)

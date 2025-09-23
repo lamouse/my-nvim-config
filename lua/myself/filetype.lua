@@ -1,1 +1,4 @@
-vim.api.nvim_command('autocmd BufNew,BufNewFile,BufRead *.vert,*.frag,*.tess,*.shader set filetype=glsl')
+vim.api.nvim_create_autocmd({"BufNew", "BufNewFile","BufRead"}, {
+    pattern = {"*.vert", "*.frag", "*.tess", "*.shader"},
+    command = "set filetype=glsl",
+})

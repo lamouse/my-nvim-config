@@ -22,7 +22,6 @@ require "user.trouble"
 require "myself.options"
 require "myself.buildsystem"
 require "myself.filetype"
-require "myself.format"
 -- ui
 require "user.ui"
 
