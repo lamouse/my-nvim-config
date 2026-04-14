@@ -1,4 +1,4 @@
-vim.g.symbols_outline = {
+vim.g.outline = {
     highlight_hovered_item = true,
     show_guides = true,
     auto_preview = true,
@@ -54,4 +54,4 @@ symbols = {
 
 }
 
-require("symbols-outline").setup()
+require("outline").setup()
